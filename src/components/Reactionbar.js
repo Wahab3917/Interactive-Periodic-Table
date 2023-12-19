@@ -1,23 +1,34 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
+import ReactionOutput from './ReactionOutput';
 
-const ReactionBar = ({ onSearch }) => {
-  const [reactionQuery, setReactionQuery] = useState('');
+const ReactionBar = ({ inputValue, setInputValue, closeInfo }) => {
 
-  const handleReactionChange = (e) => {
-    setReactionQuery(e.target.value);
+  const [reactionOutputVisible, setreactionOutputVisible] = useState(false)
+
+  const handleKeyDown = (event) => {
+    if (inputValue !== "" && event.key === 'Enter') {
+      setreactionOutputVisible(true);
+    }
   };
 
-  const handleReactionSubmit = (e) => {
-    e.preventDefault();
-    onSearch(reactionQuery);
-  };
+  const closeReactionOutput = () => {
+    setreactionOutputVisible(false);
+  }
+
+  useEffect(() => {
+    closeReactionOutput();
+    // closeInfo();
+  }, [inputValue]);
 
   return (
     <>
-      <form className="reaction-bar" onSubmit={handleReactionSubmit}>
-        <input type="text" placeholder="Perform a Reaction" value={reactionQuery} onChange={handleReactionChange} className="reaction-bar-input"/>
+      <div className="reaction-bar">
+        <input type="text" className='reaction-bar-input' placeholder="Perform a Reaction" value={inputValue} onChange={(e) => setInputValue(e.target.value)} onKeyDown={handleKeyDown}/>
         <i className="reaction-bar-icon fa-solid fa-flask"></i>
-      </form>
+      </div>
+
+      {reactionOutputVisible && <ReactionOutput inputValue={inputValue} closeReactionOutput={closeReactionOutput}/>}
+
     </>
   );
 };

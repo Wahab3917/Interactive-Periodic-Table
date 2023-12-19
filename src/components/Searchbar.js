@@ -1,23 +1,55 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { elements } from "../_data";
 
-const SearchBar = ({ onSearch }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+const SearchBar = ({ getElement, closeInfo }) => {
+  
+  var elementAutoCompleteList = document.getElementById("element-autocomplete-list");
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
+  const elementKeyUp = (e) => {
+    var value = e.target.value;
+    var searchResults = elements.filter((element) => {
+      if (element["name"].toLowerCase().indexOf(value.toLowerCase()) === -1) {
+        return false;
+      } else return true;
+    }).slice(0, 4);
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    onSearch(searchQuery);
+    var searchResultsList = "";
+
+    if (value) {
+      searchResults.forEach((element) => {
+        searchResultsList += `<li onClick="${getElement(element)}">${element.name}</li>`;
+      });
+      elementAutoCompleteList.innerHTML = searchResultsList;
+      elementAutoCompleteList.style.padding = "10px";
+
+    } else {
+      elementAutoCompleteList.innerHTML = "";
+      elementAutoCompleteList.style.padding = "0px";
+      closeInfo();
+    }
+  }
+  
+  const handleFocusChange = (isFocused) => {
+    if (!isFocused) {
+      elementAutoCompleteList.innerHTML = "";
+      elementAutoCompleteList.style.padding = "0px";
+      closeInfo();
+    }
   };
 
   return (
     <>
-      <form className="search-bar" onSubmit={handleSearchSubmit}>
-        <input type="text" placeholder="Search an Element" value={searchQuery} onChange={handleSearchChange} className="search-bar-input"/>
+
+      <div className="search-bar">
+        <input type="text" id="element-autocomplete-input" className='search-bar-input' placeholder="Search an Element"
+        onKeyUp={elementKeyUp} onBlur={() => handleFocusChange(false)} onFocus={() => handleFocusChange(true)}/>
         <i className="search-bar-icon fa-solid fa-magnifying-glass"></i>
-      </form>
+
+        <ul id="element-autocomplete-list">
+          
+        </ul>
+      </div>
+
     </>
   );
 };

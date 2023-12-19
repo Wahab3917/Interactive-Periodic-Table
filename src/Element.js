@@ -6,10 +6,6 @@ export default class Element extends Component {
     hover: false,
   };
 
-  openInfo = (event) => {
-    this.props.showInfo(this.props.num);
-  };
-
   onMouseEnter = (event) => {
     this.setState({ hover: true });
   };
@@ -26,7 +22,7 @@ export default class Element extends Component {
         title={element.name}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
-        onClick={this.openInfo}
+        onClick={() => this.props.getElement(element)}
         className={`element element-${num} ${element.category} ${
           this.state.hover ? "active" : ""
         }`}
