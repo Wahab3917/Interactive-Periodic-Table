@@ -48,13 +48,13 @@ const Login = () => {
             {/* <label htmlFor="email" className="form-label">Email</label> */}
             <input type="email" className="form-control" name='email' id="email" placeholder='Email'
             onChange={onChange} value={credentials.email}/>
-            <i className="login-form-icon fa-solid fa-flask"></i>
+            <i className="login-form-icon fa-solid fa-user"></i>
           </div>
           <div className="login-form-input-group">
             {/* <label htmlFor="password" className="form-label">Password</label> */}
             <input type="password" className="form-control" name='password' id="password" placeholder='Password'
             onChange={onChange} value={credentials.password}/>
-            <i className="login-form-icon fa-solid fa-flask"></i>
+            <i className="login-form-icon fa-solid fa-lock"></i>
           </div>
           <div>
             <button type="submit" className="btn login-button">Login</button>

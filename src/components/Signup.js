@@ -51,26 +51,26 @@ const Signup = () => {
             {/* <label htmlFor="name" className="form-label">Name</label> */}
             <input type="text" className="form-control" id="name" name='name' placeholder='Name'
             onChange={onChange} value={credentials.name} required/>
-            <i className="signup-form-icon fa-solid fa-flask"></i>
+            <i className="signup-form-icon fa-solid fa-user"></i>
           </div>
           <div className="signup-form-input-group">
             {/* <label htmlFor="email" className="form-label">Email</label> */}
             <input type="email" className="form-control" id="email" name='email' placeholder='Email'
             onChange={onChange} value={credentials.email} required/>
-            <i className="signup-form-icon fa-solid fa-flask"></i>
+            <i className="signup-form-icon fa-solid fa-lock"></i>
           </div>
           <div className="signup-form-input-group">
             {/* <label htmlFor="password" className="form-label">Password</label> */}
             <input type="password" className="form-control" id="password" name='password' placeholder='Password'
             onChange={onChange} value={credentials.password} required minLength={8}/>
-            <i className="signup-form-icon fa-solid fa-flask"></i>
+            <i className="signup-form-icon fa-solid fa-lock"></i>
           </div>
           <div>
             <button type="submit" className="btn signup-button">Sign Up</button>
           </div>
         </form>
 
-        <p>Already have an account? <Link to="/signup">Login</Link></p>
+        <p>Already have an account? <Link to="/login">Login</Link></p>
 
       </div>
     
