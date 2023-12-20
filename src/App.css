@@ -43,6 +43,28 @@ body {
   margin-top: 30px;
 }
 
+.btn {
+  background-color: #20A4F3;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.login-button, .signup-button {
+  margin-top: 20px;
+}
+
+input {
+  padding: 12px 90px 12px 38px;
+  font-size: 14px;
+  background: #fbfbfb;
+  border: 1px solid #fbfbfb;
+  border-radius: 60px;
+}
+
 
 /* NAVBAR */
 .navbar {
@@ -66,16 +88,6 @@ body {
   text-align: right;
 }
 
-.logout-button {
-  background-color: #20A4F3;
-  color: #fff;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 2px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
@@ -94,20 +106,15 @@ body {
 
 
 /* SEARCH BAR & REACTION BAR */
-.search-bar, .reaction-bar {
+.search-bar, .reaction-bar,
+.login-form-input-group,
+.signup-form-input-group {
   position: relative;
   margin: 0 auto;
 }
 
-.search-bar-input, .reaction-bar-input {
-  padding: 12px 90px 12px 38px;
-  font-size: 14px;
-  background: #fbfbfb;
-  border: 1px solid #fbfbfb;
-  border-radius: 60px;
-}
-
-.search-bar-icon, .reaction-bar-icon {
+.search-bar-icon, .reaction-bar-icon,
+.login-form-icon, .signup-form-icon {
   width: 18px;
   height: 18px;
   margin-left: 3px;
@@ -434,5 +441,50 @@ body {
     width: 7vw;
     height: 7vw;
   }
+}
+
+
+/* LOGIN PAGE */
+
+.container-login,
+.container-signup {
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.login-page-logo,
+.signup-page-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-page-logo h1,
+.signup-page-logo h1 {
+  margin-left: 10px;
+  font-size: 42px;
+  text-align: left;
+}
+
+.container-login p,
+.container-signup p {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.login-form .login-form-input-group,
+.signup-form .signup-form-input-group {
+  width: 70%;
+}
+
+.login-form input,
+.signup-form input {
+  width: 100%;
+  margin: 5px 0 5px 0;
 }
 

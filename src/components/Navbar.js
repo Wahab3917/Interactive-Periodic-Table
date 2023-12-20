@@ -1,7 +1,16 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import logo from '../images/logo.png'
 
 const Navbar = () => {
+
+  let navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate("/login");
+  }
+
   return (
     <>
 
@@ -10,7 +19,7 @@ const Navbar = () => {
         <img src={logo} alt="Logo" className="logo"/>
       </div>
       <div className="logout-container">
-        <button className="logout-button">Logout</button>
+        <button onClick={handleLogout} className="btn logout-button">Logout</button>
       </div>
     </nav>
     
