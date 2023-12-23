@@ -2,8 +2,6 @@ import React from 'react';
 import { elements } from "../_data";
 
 const SearchBar = ({ getElement, closeInfo }) => {
-  
-  var elementAutoCompleteList = document.getElementById("element-autocomplete-list");
 
   const elementKeyUp = (e) => {
     var value = e.target.value;
@@ -14,6 +12,7 @@ const SearchBar = ({ getElement, closeInfo }) => {
     }).slice(0, 4);
 
     var searchResultsList = "";
+    var elementAutoCompleteList = document.getElementById("element-autocomplete-list");
 
     if (value) {
       searchResults.forEach((element) => {
@@ -30,6 +29,7 @@ const SearchBar = ({ getElement, closeInfo }) => {
   }
   
   const handleFocusChange = (isFocused) => {
+    var elementAutoCompleteList = document.getElementById("element-autocomplete-list");
     if (!isFocused) {
       elementAutoCompleteList.innerHTML = "";
       elementAutoCompleteList.style.padding = "0px";

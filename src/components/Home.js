@@ -35,18 +35,18 @@ const Home = () => {
 
   const getElement = (element) => {
     showInfoHandler(element.number);
-    sendToReaction(element.symbol);
+    // sendToReaction(element.symbol);
   };
 
-  const sendToReaction = (elementSymbol) => {
-    setInputValue((prevValue) => {
-      if (prevValue === "") {
-        return `${elementSymbol}`;
-      } else {
-        return `${prevValue} + ${elementSymbol}`;
-      }
-    });
-  };
+  // const sendToReaction = (elementSymbol) => {
+  //   setInputValue((prevValue) => {
+  //     if (prevValue === "") {
+  //       return `${elementSymbol}`;
+  //     } else {
+  //       return `${prevValue} + ${elementSymbol}`;
+  //     }
+  //   });
+  // };
 
   const populateElements = (start, end) => {
     let items = [];

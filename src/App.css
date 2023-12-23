@@ -181,7 +181,7 @@ input {
   color: #333;
 }
 
-.reaction-input-value, .reaction-after-balancing {
+.reaction-input-value {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -189,9 +189,16 @@ input {
 }
 
 .reaction-input-value h4, .reaction-after-balancing h4,
-.reaction-input-value p, .reaction-after-balancing p {
+.reaction-input-value p {
   margin: 0;
   padding: 0;
+}
+
+.equation-overview-link p {
+  margin: 0;
+  padding: 0;
+  margin-top: 5px;
+  font-size: 14px;
 }
 
 

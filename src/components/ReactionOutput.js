@@ -1,97 +1,52 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import gif from '../images/reaction-output-gif.gif';
 
 const ReactionOutput = ({ inputValue, closeReactionOutput }) => {
 
-  // const balanceEquation = (equation) => {
+  const [showImage, setShowImage] = useState(true);
 
-  //   // Check if equation is a valid string
-  //   if (typeof equation !== 'string' || !equation.trim()) {
-  //     return 'Invalid equation'; // or handle it according to your application's logic
-  //   }
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowImage(false); // Hide the image after 2 seconds
+    }, 5000);
+    return () => clearTimeout(timer); // Clear the timer if the component unmounts
+  }, [])
 
-  //   // Split the equation into reactants and products
-  //   const [reactants, products] = equation.split('=').map(side => side.trim());
-  
-  //   // Parse the reactants and products into individual compounds
-  //   const parseCompounds = side => side.split('+').map(compound => compound.trim());
-  
-  //   const reactantCompounds = parseCompounds(reactants);
-  //   const productCompounds = parseCompounds(products);
-  
-  //   // Get the list of unique elements in the equation
-  //   const getElements = compounds =>
-  //   compounds.flatMap(compound => compound.match(/[A-Z][a-z]?\d*/g));
-  
-  //   const reactantElements = getElements(reactantCompounds);
-  //   const productElements = getElements(productCompounds);
-  //   const allElements = [...new Set([...reactantElements, ...productElements])];
-  
-  //   // Initialize a matrix to represent the coefficients of each element in each compound
-  //   const matrix = allElements.map(element =>
-  //     [...reactantCompounds, ...productCompounds].map(compound =>
-  //       (compound.match(new RegExp(`${element}(\\d*)`)) || [])[1] || 0
-  //     )
-  //   );
-  
-  //   // Solve the matrix using Gaussian elimination
-  //   for (let i = 0; i < matrix.length; i++) {
-  //     for (let j = 0; j < matrix[i].length; j++) {
-  //       matrix[i][j] = parseInt(matrix[i][j], 10);
-  //     }
-  //   }
-  
-  //   const solveEquation = () => {
-  //     for (let i = 0; i < matrix.length; i++) {
-  //       let pivotRow = i;
-  //       while (pivotRow < matrix.length && matrix[pivotRow][i] === 0) {
-  //         pivotRow++;
-  //       }
-  
-  //       if (pivotRow === matrix.length) {
-  //         continue;
-  //       }
-  
-  //       [matrix[i], matrix[pivotRow]] = [matrix[pivotRow], matrix[i]];
-  
-  //       for (let j = 0; j < matrix.length; j++) {
-  //         if (j !== i) {
-  //           const factor = matrix[j][i] / matrix[i][i];
-  //           for (let k = i; k < matrix[i].length; k++) {
-  //             matrix[j][k] -= factor * matrix[i][k];
-  //           }
-  //         }
-  //       }
-  //     }
-  //   };
-  
-  //   solveEquation();
-  
-  //   // Get the coefficients for the balanced equation
-  //   const coefficients = matrix.map(row => row[row.length - 1]);
-  
-  //   // Build the balanced equation string
-  //   const balancedEquation = `${reactantCompounds.map((compound, index) =>
-  //     `${coefficients[index]} ${compound}`
-  //   ).join(' + ')} = ${productCompounds.map((compound, index) =>
-  //     `${coefficients[index + reactantCompounds.length]} ${compound}`
-  //   ).join(' + ')}`;
-  
-  //   return balancedEquation;
-  // }
+  function formatEquation(inputValue) {
+    // Split the equation at '->' and trim spaces from each part
+    const [leftSide, rightSide] = inputValue.split('->').map(side => side.trim());
 
-  var balancedEquation = "";
-  // balancedEquation += balanceEquation(inputValue);
+    // Replace ' + ' with '+%2B+' in both left and right sides
+    const formattedLeft = leftSide.replace(/ \+ /g, '+%2B+');
+    const formattedRight = rightSide.replace(/ \+ /g, '+%2B+');
+
+    // Combine both sides with '+->+'
+    return `${formattedLeft}+->+${formattedRight}`;
+  }
+  
+  const equation = formatEquation(inputValue);
+  const balancedEquation = `https://www.wolframalpha.com/input?i=${equation}`;
+  
 
   return (
     <>
 
       <div className="reaction-output">
 
-        <i className="reaction-output-icon fa-solid fa-flask"></i>
-        <div onClick={closeReactionOutput} className="reaction-output-close-button" title="Close Reaction Output">&times;</div>
+        {showImage && (
+          <img src={gif} alt="Reaction Gif" style={{width: "80%", margin: "0 auto"}}/>
+        )}
 
-        <div className="reaction-input-value"><h4>Reaction Input: &nbsp;</h4> <p>{inputValue}</p></div>
-        <div className="reaction-after-balancing"><h4>After Balancing: &nbsp;</h4> <p>{balancedEquation}</p></div>
+        {!showImage && (
+          <>
+            <i className="reaction-output-icon fa-solid fa-flask"></i>
+            <div onClick={closeReactionOutput} className="reaction-output-close-button" title="Close Reaction Output">&times;</div>
+
+            <div className="reaction-input-value"><h4>Input Interpretation: &nbsp;</h4> <p>{inputValue}</p></div>
+            <a className='equation-overview-link' href={balancedEquation}><p>Check detailed overview of your input</p></a>
+          </>
+        )}
+
       </div>
 
     </>

@@ -23,7 +23,7 @@ const ReactionBar = ({ inputValue, setInputValue, closeInfo }) => {
   return (
     <>
       <div className="reaction-bar">
-        <input type="text" className='reaction-bar-input' placeholder="Perform a Reaction" value={inputValue} onChange={(e) => setInputValue(e.target.value)} onKeyDown={handleKeyDown}/>
+        <input type="text" className='reaction-bar-input' placeholder="Balance an Equation" value={inputValue} onChange={(e) => setInputValue(e.target.value)} onKeyDown={handleKeyDown}/>
         <i className="reaction-bar-icon fa-solid fa-flask"></i>
       </div>
 
