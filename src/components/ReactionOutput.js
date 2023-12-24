@@ -43,7 +43,7 @@ const ReactionOutput = ({ inputValue, closeReactionOutput }) => {
             <div onClick={closeReactionOutput} className="reaction-output-close-button" title="Close Reaction Output">&times;</div>
 
             <div className="reaction-input-value"><h4>Input Interpretation: &nbsp;</h4> <p>{inputValue}</p></div>
-            <a className='equation-overview-link' href={balancedEquation}><p>Check detailed overview of your input</p></a>
+            <a className='equation-overview-link' href={balancedEquation} target='_blank'><p>Check detailed overview of your input</p></a>
           </>
         )}
 

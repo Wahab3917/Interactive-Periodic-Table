@@ -33,7 +33,7 @@ const SearchBar = ({ getElement, closeInfo }) => {
     if (!isFocused) {
       elementAutoCompleteList.innerHTML = "";
       elementAutoCompleteList.style.padding = "0px";
-      closeInfo();
+      // closeInfo();
     }
   };
 
