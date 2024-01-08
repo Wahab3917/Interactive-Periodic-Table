@@ -99,7 +99,8 @@ const Home = () => {
                   {element.boil && <span> | Boil: {element.boil}K</span>}
                 </div>
                 <div>
-                  {element.summary} ... <a target="_blank" href={element.source} rel="noreferrer">Source</a>
+                  {/* {element.summary} ... <a target="_blank" href={element.source} rel="noreferrer">Source</a> */}
+                  {element.summary}
                 </div>
               </div>
             </div>

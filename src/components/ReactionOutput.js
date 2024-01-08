@@ -12,21 +12,7 @@ const ReactionOutput = ({ inputValue, closeReactionOutput }) => {
     return () => clearTimeout(timer); // Clear the timer if the component unmounts
   }, [])
 
-  function formatEquation(inputValue) {
-    // Split the equation at '->' and trim spaces from each part
-    const [leftSide, rightSide] = inputValue.split('->').map(side => side.trim());
-
-    // Replace ' + ' with '+%2B+' in both left and right sides
-    const formattedLeft = leftSide.replace(/ \+ /g, '+%2B+');
-    const formattedRight = rightSide.replace(/ \+ /g, '+%2B+');
-
-    // Combine both sides with '+->+'
-    return `${formattedLeft}+->+${formattedRight}`;
-  }
-  
-  const equation = formatEquation(inputValue);
-  const balancedEquation = `https://www.wolframalpha.com/input?i=${equation}`;
-  
+  const chemicalEquationBalancer = 'http://localhost/chemicalequationbalancer/chemical-balancer.html';
 
   return (
     <>
@@ -41,9 +27,10 @@ const ReactionOutput = ({ inputValue, closeReactionOutput }) => {
           <>
             <i className="reaction-output-icon fa-solid fa-flask"></i>
             <div onClick={closeReactionOutput} className="reaction-output-close-button" title="Close Reaction Output">&times;</div>
+            {/* <div className="reaction-input-value"><h4>Input Interpretation: &nbsp;</h4> <p>{inputValue}</p></div> */}
 
-            <div className="reaction-input-value"><h4>Input Interpretation: &nbsp;</h4> <p>{inputValue}</p></div>
-            <a className='equation-overview-link' href={balancedEquation} target='_blank'><p>Check detailed overview of your input</p></a>
+            <iframe src={chemicalEquationBalancer} width="100%" style={{border: "none"}}></iframe>
+
           </>
         )}
 
