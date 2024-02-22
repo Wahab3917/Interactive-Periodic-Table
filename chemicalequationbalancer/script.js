@@ -6,6 +6,7 @@ function doBalance() {
     const balancedElem = document.getElementById("balanced");
     const codeOutElem = document.getElementById("codeOutput");
     msgElem.textContent = "";
+
     while (balancedElem.firstChild !== null)
         balancedElem.removeChild(balancedElem.firstChild);
     while (codeOutElem.firstChild !== null)
